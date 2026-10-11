@@ -1,0 +1,108 @@
+/* Print style: the CV fits on one page, without navigation and decorative backgrounds */
+@media print {
+    @page {
+        size: A4;
+        margin: 12mm;
+    }
+
+    /* Always print in the light scheme, even if dark mode is active */
+    :root {
+        --color-text: #000000;
+        --color-heading: #000000;
+        --color-muted: #333333;
+        --color-surface: #ffffff;
+        --color-bg: #ffffff;
+    }
+
+    .skip-link {
+        display: none;
+    }
+
+    body {
+        padding-top: 0;
+        background: none;
+        font-size: 10.5pt;
+    }
+
+    .fixed {
+        position: static;
+    }
+
+    header {
+        height: auto;
+        background: none;
+        color: var(--color-text);
+    }
+
+    .monogram {
+        width: 56px;
+        height: 56px;
+        background: none;
+        color: var(--color-text);
+        border: 1px solid currentColor;
+    }
+
+    nav,
+    footer p,
+    #print-button {
+        display: none;
+    }
+
+    footer {
+        padding: 0;
+        font-size: 9pt;
+    }
+
+    main,
+    .container {
+        width: 100%;
+        margin: 10px 0 0;
+    }
+
+    .container h1 {
+        margin-bottom: 10px;
+    }
+
+    .cv {
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+        border: 1px solid currentColor;
+        break-inside: avoid;
+    }
+
+    .cv-section-left {
+        flex-basis: 220px;
+        background: none;
+        color: var(--color-text);
+        border-right: 1px solid currentColor;
+    }
+
+    .cv-section-left a {
+        text-decoration: none;
+    }
+
+    .info div {
+        margin-bottom: 4px;
+    }
+
+    .skills {
+        gap: 6px;
+    }
+
+    .profile-avatar img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .bar {
+        background: none;
+        border: 1px solid currentColor;
+    }
+
+    .fill {
+        background: currentColor;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}

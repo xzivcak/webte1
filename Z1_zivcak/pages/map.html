@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Kde ma nájdete | Matej Jakub Živčák</title>
+    <meta name="description" content="Interaktívna mapa: odkiaľ dochádzam a ako ďaleko je škola.">
+    <meta property="og:title" content="Kde ma nájdete | Matej Jakub Živčák">
+    <meta property="og:description" content="Interaktívna mapa: odkiaľ dochádzam a ako ďaleko je škola.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../img/favicon.png">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Preskočiť na obsah</a>
+    <div class="fixed">
+        <header>
+            <div class="top1">
+                <div class="monogram" aria-hidden="true">MJŽ</div>   
+                
+                <div class="name">
+                    <div class="text1">
+                        Matej Jakub Živčák
+                    </div>
+
+                    <div class="text2">
+                        Študent aplikovanej informatiky, zaujímajú ma webové technológie.
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav aria-label="Hlavná navigácia">
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">☰ Menu</button>
+            <ul class="menu" id="menu">
+                <li><a href="../index.html">Profil</a></li>
+                <li><a href="cv.html">Životopis</a></li>
+                <li><a href="workspace.html">Moje hobby</a></li>
+                <li><a href="schedule.html">Kedy ma zastihnete</a></li>
+                <li><a href="map.html" class="active" aria-current="page">Kde ma nájdete</a></li>
+            </ul>
+        </nav>
+    </div>  
+
+
+     <main id="main" class="container map-page">
+        <h1>Kde ma nájdete</h1>
+        <section class="card">
+            <h2>Odkiaľ dochádzam</h2>
+
+            <div id="empty-hint" class="hint">
+                <strong>Ako na to:</strong>
+                <ol>
+                    <li>Kliknite kamkoľvek do mapy a pomenujte nový bod (z klávesnice: posuňte mapu šípkami a stlačte „Pridať bod v strede mapy“).</li>
+                    <li>Vyberte ho v zozname „Moje body“.</li>
+                    <li>Zvoľte cieľ (škola alebo domov) a zobrazí sa spojnica s vzdialenosťou.</li>
+                </ol>
+            </div>
+
+            <div class="map-actions">
+                <button type="button" id="add-center">Pridať bod v strede mapy</button>
+                <p>Škola aj môj domov sú na mape vyznačené natrvalo.</p>
+            </div>
+
+            <div class="map-layout">
+                <div id="map" role="region" aria-label="Interaktívna mapa – škola, domov a vlastné body"></div>
+
+                <aside class="panel">
+                    <h3>Moje body</h3>
+                    <ul class="legend">
+                        <li><span class="dot school"></span>Škola</li>
+                        <li><span class="dot home"></span>Domov</li>
+                        <li><span class="dot user"></span>Vlastný bod</li>
+                    </ul>
+
+                    <p id="list-empty">Zatiaľ nemáte žiadne vlastné body.</p>
+                    <ul id="points" class="points"></ul>
+
+                    <fieldset class="target">
+                        <legend>Cieľ</legend>
+                        <label><input type="radio" name="target" value="school" checked> Škola</label>
+                        <label><input type="radio" name="target" value="home"> Domov</label>
+                    </fieldset>
+
+                    <p id="result" role="status">Vyberte bod zo zoznamu.</p>
+                </aside>
+            </div>
+
+            <p class="source">
+                Mapové podklady: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a>,
+                knižnica: <a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet</a>.
+            </p>
+        </section>
+    </main>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    
+    <footer>
+        <address>
+            Matej Jakub Živčák ·
+            <a href="mailto:matej.zivcak@email.com">matej.zivcak@email.com</a> ·
+            <a href="tel:+421901234567">+421 901 234 567</a>
+        </address>
+        <p>© 2026 Matej Jakub Živčák · Webové technológie I.</p>
+        <p>
+            Zdroje: fotografie z Marmolady vlastné ·
+            <a href="https://www.ortovox.com/uk/safety-academy-lab-ice/chapter-1/equipment-for-high-alpine-touring" target="_blank" rel="noopener">Ortovox (ilustrácia výbavy)</a> ·
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a> ·
+            <a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet</a>
+        </p>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

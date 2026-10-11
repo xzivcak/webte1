@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Kedy ma zastihnete | Matej Jakub Živčák</title>
+    <meta name="description" content="Môj semestrálny rozvrh s prehľadom prednášok a cvičení.">
+    <meta property="og:title" content="Kedy ma zastihnete | Matej Jakub Živčák">
+    <meta property="og:description" content="Môj semestrálny rozvrh s prehľadom prednášok a cvičení.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../img/favicon.png">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Preskočiť na obsah</a>
+    <div class="fixed">
+        <header>
+            <div class="top1">
+                <div class="monogram" aria-hidden="true">MJŽ</div>   
+                
+                <div class="name">
+                    <div class="text1">
+                        Matej Jakub Živčák
+                    </div>
+
+                    <div class="text2">
+                        Študent aplikovanej informatiky, zaujímajú ma webové technológie.
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav aria-label="Hlavná navigácia">
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">☰ Menu</button>
+            <ul class="menu" id="menu">
+                <li><a href="../index.html">Profil</a></li>
+                <li><a href="cv.html">Životopis</a></li>
+                <li><a href="workspace.html">Moje hobby</a></li>
+                <li><a href="schedule.html" class="active" aria-current="page">Kedy ma zastihnete</a></li>
+                <li><a href="map.html">Kde ma nájdete</a></li>
+            </ul>
+        </nav>
+    </div>  
+
+     <main id="main" class="container schedule">
+        <h1>Kedy ma zastihnete</h1>
+        <section class="card">
+        <h2>Týždenný rozvrh (7:00 – 21:00)</h2>
+        <p id="status" role="status">Aktuálnu hodinu zvýrazňuje JavaScript – ak je vypnutý, rozvrh nájdete v tabuľke nižšie.</p>
+ 
+        <div class="filters" role="group" aria-label="Filter rozvrhu">
+            <button type="button" data-filter="all" class="active" aria-pressed="true">Všetko</button>
+            <button type="button" data-filter="lecture" aria-pressed="false">Prednášky</button>
+            <button type="button" data-filter="exercise" aria-pressed="false">Cvičenia</button>
+        </div>
+        <p id="empty" hidden>Pre tento filter nie je v rozvrhu žiadna hodina.</p>
+ 
+        <div class="table-wrap">
+            <table id="timetable">
+                <thead><tr><th scope="col">Deň</th><th scope="col">7:00–8:00</th><th scope="col">8:00–9:00</th><th scope="col">9:00–10:00</th><th scope="col">10:00–11:00</th><th scope="col">11:00–12:00</th><th scope="col">12:00–13:00</th><th scope="col">13:00–14:00</th><th scope="col">14:00–15:00</th><th scope="col">15:00–16:00</th><th scope="col">16:00–17:00</th><th scope="col">17:00–18:00</th><th scope="col">18:00–19:00</th><th scope="col">19:00–20:00</th><th scope="col">20:00–21:00</th></tr></thead>
+                <tbody>
+                <tr><th scope="row">Po</th>
+                    <td class="free" colspan="2"></td>
+                    <td class="exercise" colspan="2" data-day="1" data-start="9" data-end="11"><b>Webové technológie 1</b>c137a · K. Žáková</td>
+                    <td class="free" colspan="2"></td>
+                    <td class="lecture" colspan="2" data-day="1" data-start="13" data-end="15"><b>Mikropočítače a ich programovanie</b>de300 · P. Kubinec</td>
+                    <td class="free" colspan="6"></td>
+                </tr>
+                <tr><th scope="row">Ut</th>
+                    <td class="free" colspan="3"></td>
+                    <td class="lecture" colspan="2" data-day="2" data-start="10" data-end="12"><b>Webové technológie 1</b>cd150 · K. Žáková</td>
+                    <td class="free"></td>
+                    <td class="exercise" colspan="2" data-day="2" data-start="13" data-end="15"><b>Počítačové siete</b>b619 · L. Divinec</td>
+                    <td class="lecture" colspan="2" data-day="2" data-start="15" data-end="17"><b>Programovacie techniky</b>de300 · M. Drozda</td>
+                    <td class="free" colspan="4"></td>
+                </tr>
+                <tr><th scope="row">St</th>
+                    <td class="free" colspan="3"></td>
+                    <td class="lecture" colspan="2" data-day="3" data-start="10" data-end="12"><b>Logické systémy</b>ab300 · L. Nagy</td>
+                    <td class="free"></td>
+                    <td class="lecture" colspan="2" data-day="3" data-start="13" data-end="15"><b>Webové technológie 1</b>cd150 · K. Žáková</td>
+                    <td class="free" colspan="6"></td>
+                </tr>
+                <tr><th scope="row">Št</th>
+                    <td class="free"></td>
+                    <td class="exercise" colspan="2" data-day="4" data-start="8" data-end="10"><b>Programovacie techniky</b>cd300 · M. Drozda</td>
+                    <td class="pe" colspan="2" data-day="4" data-start="10" data-end="12"><b>Telesná kultúra 3</b>t-upol2 · K. Hižnayová</td>
+                    <td class="free"></td>
+                    <td class="lecture" colspan="2" data-day="4" data-start="13" data-end="15"><b>Počítačové siete</b>cd300 · R. Vargic</td>
+                    <td class="exercise" colspan="2" data-day="4" data-start="15" data-end="17"><b>Logické systémy</b>ab35 · M. Brázda</td>
+                    <td class="exercise" colspan="2" data-day="4" data-start="17" data-end="19"><b>Mikropočítače a ich programovanie</b>e133 · P. Kubinec</td>
+                    <td class="free" colspan="2"></td>
+                </tr>
+                <tr><th scope="row">Pi</th>
+                    <td class="free" colspan="14"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+ 
+        <ul class="legend"><li class="lecture">Prednáška</li><li class="exercise">Cvičenie</li><li class="pe">Telesná kultúra</li></ul>
+ 
+        <h2>Priebeh semestra</h2>
+        <p id="progress-label"></p>
+        <div class="progress" role="progressbar" aria-label="Uplynutá časť semestra" aria-valuemin="0" aria-valuemax="100"><div id="progress-fill"></div></div>
+    </section>
+    </main>
+
+    <footer>
+        <address>
+            Matej Jakub Živčák ·
+            <a href="mailto:matej.zivcak@email.com">matej.zivcak@email.com</a> ·
+            <a href="tel:+421901234567">+421 901 234 567</a>
+        </address>
+        <p>© 2026 Matej Jakub Živčák · Webové technológie I.</p>
+        <p>
+            Zdroje: fotografie z Marmolady vlastné ·
+            <a href="https://www.ortovox.com/uk/safety-academy-lab-ice/chapter-1/equipment-for-high-alpine-touring" target="_blank" rel="noopener">Ortovox (ilustrácia výbavy)</a> ·
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a> ·
+            <a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet</a>
+        </p>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

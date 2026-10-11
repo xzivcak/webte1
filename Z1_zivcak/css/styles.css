@@ -1,0 +1,1119 @@
+/* One local font file: Roboto (variable weight 400-700, Latin + Latin Extended) */
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("../fonts/chosen-font.woff2") format("woff2");
+}
+
+/* Design tokens: every color value lives here (contrast of text >= 4.5:1) */
+:root {
+    color-scheme: light dark;
+    --color-brand: #1d4f8c;
+    --color-brand-light: #2f63ad;
+    --color-brand-dark: #1b2b3f;
+    --color-on-brand: #ffffff;
+    --color-accent: #e37823;
+    --color-heading: #0b4f9c;
+    --color-link-hover: #0a3566;
+    --color-text: #333333;
+    --color-muted: #5c5c5c;
+    --color-bg: #eeeeee;
+    --color-surface: #ffffff;
+    --color-surface-alt: #eef2f5;
+    --color-border: #c5cdd3;
+    --color-track: #e5ecf6;
+    --color-zebra: #e4e9ee;
+    --color-hint: #fff3e0;
+    --color-focus: #ff7043;
+    --color-success: #2e9e4f;
+    --color-danger: #b00020;
+    --color-danger-bg: #fde8ec;
+    --color-lecture: #a5e6a0;
+    --color-exercise: #d9f7fb;
+    --color-pe: #e6d9f7;
+    --color-shadow: rgb(0 0 0 / 0.1);
+    --color-shadow-strong: rgb(0 0 0 / 0.18);
+    --radius: 8px;
+    --space: 1rem;
+    --font-main: "Roboto", Arial, sans-serif;
+    --dot-size: 2rem;
+    --panel-width: 16rem;
+    --panel-area: 8rem;
+    --header-height: 170px;
+}
+
+/* Dark mode: only the tokens change, the rules stay the same */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-brand-dark: #12396b;
+        --color-accent: #f0913f;
+        --color-heading: #8ab8ff;
+        --color-link-hover: #c4dcff;
+        --color-text: #e6e9ee;
+        --color-muted: #a8b3c0;
+        --color-bg: #121820;
+        --color-surface: #1c2530;
+        --color-surface-alt: #243040;
+        --color-border: #3a4756;
+        --color-track: #2a3644;
+        --color-zebra: #222c38;
+        --color-hint: #3a2e1c;
+        --color-focus: #ffa07a;
+        --color-success: #4cc06f;
+        --color-danger: #ff8a99;
+        --color-danger-bg: #3d1820;
+        --color-lecture: #2f5a2c;
+        --color-exercise: #1f4a52;
+        --color-pe: #43355a;
+        --color-shadow: rgb(0 0 0 / 0.4);
+        --color-shadow-strong: rgb(0 0 0 / 0.6);
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Always reserve the scrollbar space, so the centered menu never jumps */
+html {
+    overflow-y: scroll;
+    /* anchors (e.g. the skip link) must not end up under the fixed header */
+    scroll-padding-top: var(--header-height);
+}
+
+/* Skip link: hidden above the viewport until it gets keyboard focus */
+.skip-link {
+    position: absolute;
+    top: 0;
+    left: var(--space);
+    z-index: 2000;
+    padding: 10px 16px;
+    background-color: var(--color-brand-dark);
+    color: var(--color-on-brand);
+    border-radius: 0 0 var(--radius) var(--radius);
+    font-weight: 500;
+    transform: translateY(-120%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    margin: 0;
+    padding-top: var(--header-height);
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header {
+    background-color: var(--color-brand-light);
+    color: var(--color-on-brand);
+    height: 110px;
+    display: flex;
+}
+
+.top1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Monogram made of text and CSS, the favicon uses the same motif */
+.monogram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius);
+    background-color: var(--color-brand-dark);
+    color: var(--color-on-brand);
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.name {
+    margin-left: 15px;
+}
+
+.text1 {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+nav {
+    background-color: var(--color-brand);
+    height: 60px;
+    display: flex;
+}
+
+/* Unordered list turned into a horizontal menu */
+.menu {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    height: 60px;
+    align-items: stretch;
+}
+
+.menu li {
+    display: flex;
+}
+
+nav a {
+    display: flex;
+    color: var(--color-on-brand);
+    text-decoration: none;
+    align-items: center;
+    font-weight: 500;
+    height: 100%;
+    padding: 0 15px;
+    transition: background-color 0.2s ease;
+}
+
+nav a.active {
+    background-color: var(--color-brand-dark);
+}
+
+nav a:hover {
+    background-color: var(--color-brand-light);
+}
+
+/* Same focus ring for every control on every page */
+:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+nav a:focus-visible,
+.menu-toggle:focus-visible {
+    outline-offset: -3px;
+}
+
+/* Every button looks and behaves the same: hover, active, focus */
+:where(button) {
+    font: inherit;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    transition: background-color 0.2s ease;
+}
+
+:where(button):hover {
+    background-color: var(--color-brand-light);
+    color: var(--color-on-brand);
+}
+
+:where(button).active {
+    background-color: var(--color-brand-dark);
+    color: var(--color-on-brand);
+    /* transparent border shows the same background, so the button keeps its size */
+    border-color: transparent;
+}
+
+/* Burger button, visible only on small screens */
+.menu-toggle {
+    display: none;
+    font-size: 1.1rem;
+    color: var(--color-on-brand);
+    background: none;
+    border: 0;
+    border-radius: 0;
+}
+
+.menu-toggle:hover {
+    background-color: var(--color-brand-light);
+}
+
+main a,
+footer a {
+    color: var(--color-heading);
+}
+
+main a:hover,
+footer a:hover {
+    color: var(--color-link-hover);
+}
+
+main {
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
+    color: var(--color-text);
+}
+
+/* White card, shared by the content of every page */
+.card {
+    background-color: var(--color-surface);
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 4px var(--color-shadow);
+}
+
+.card > :first-child {
+    margin-top: 0;
+}
+
+/* Headings */
+.container h1 {
+    color: var(--color-heading);
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.container h2 {
+    color: var(--color-text);
+    font-size: 1.3rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/* Floating image (float) */
+.profile-img {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+/* The text forms its own column next to the floated photo, so the last line never slips under the photo */
+.bio-text {
+    display: flow-root;
+}
+
+.bio-section::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* List */
+.container ul {
+    margin-left: 20px;
+    line-height: 1.6;
+}
+
+/* Quote / motto */
+blockquote {
+    margin: 30px 0 0;
+    padding: 15px 20px;
+    background-color: var(--color-surface-alt);
+    border-left: 5px solid var(--color-accent);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--color-text);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+}
+
+footer p {
+    margin: 4px 0;
+}
+
+address {
+    font-style: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .top1,
+    .menu,
+    main,
+    .container {
+        width: 92%;
+    }
+
+    .monogram {
+        width: 56px;
+        height: 56px;
+        font-size: 1.1rem;
+    }
+
+    .text1 {
+        font-size: 1.2rem;
+    }
+
+    .text2 {
+        font-size: 0.85rem;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    /* Burger menu: the list is hidden until the button opens it */
+    nav {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .menu-toggle {
+        display: block;
+        width: 92%;
+        height: 50px;
+        margin: 0 auto;
+        padding: 0;
+        text-align: left;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+    .menu.menu--open {
+        display: flex;
+    }
+
+    .menu li {
+        display: block;
+    }
+
+    nav a {
+        height: 48px;
+        padding: 0 4%;
+    }
+
+    .profile-img {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+/* Very narrow screens: the photo sits above the text, the column next to it would be too narrow */
+@media (max-width: 600px) {
+    .profile-img {
+        float: none;
+        display: block;
+        margin: 0 auto 15px;
+    }
+
+    .bio-text h1 {
+        text-align: center;
+    }
+}
+
+/* Shared title row: heading on the left, optional action button on the right */
+.page-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space);
+    margin-bottom: 20px;
+}
+
+.page-title h1 {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================
+   Page: CV
+   ========================================================== */
+
+/* Two flex columns with different backgrounds, both as tall as the taller one */
+.cv {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--color-surface);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 4px var(--color-shadow);
+    overflow: hidden;
+}
+
+.cv-section-left {
+    flex: 0 0 260px;
+    padding: 25px 20px;
+    background-color: var(--color-brand-dark);
+    color: var(--color-on-brand);
+}
+
+.cv-section-left h2 {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: inherit;
+}
+
+/* Personal data: label on its own line, the value never breaks in the middle */
+.info {
+    margin: 0;
+}
+
+.info div {
+    margin-bottom: 10px;
+}
+
+.info dt {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.info dd {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.cv-section-left address {
+    margin-top: 10px;
+}
+
+.cv-section-left a {
+    color: inherit;
+}
+
+.cv-section-right {
+    flex: 1;
+    min-width: 0;
+    padding: 25px;
+}
+
+.cv-section-right h2:first-child {
+    margin-top: 0;
+}
+
+.profile-avatar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-brand);
+}
+
+/* One row per skill: label on the left, level bar on the right */
+.skills {
+    list-style: none;
+    display: grid;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.container .skills {
+    margin-left: 0;
+}
+
+.skills li {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+.bar {
+    height: 16px;
+    background-color: var(--color-track);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    background-color: var(--color-accent);
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .cv {
+        flex-direction: column;
+    }
+
+    .cv-section-left {
+        flex-basis: auto;
+    }
+
+    .skills li {
+        grid-template-columns: 110px 1fr;
+    }
+}
+
+
+/* ==========================================================
+   Page: workspace (hobby)
+   ========================================================== */
+
+.hobby-photo {
+  margin: 24px 0 0;
+}
+
+.hobby-photo figcaption {
+  text-align: center;
+}
+
+.skills-title {
+  font-size: 1rem;
+  margin: 15px 0 10px;
+}
+
+figcaption {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-top: 6px;
+  text-align: center;
+}
+
+.image {
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--radius);
+  height: auto;
+  display: block;
+}
+
+/* Step 4: the positioned container is the reference for absolute children */
+.hotspot-figure {
+  margin: 0;
+}
+
+.hotspot-image {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hotspot-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
+}
+
+/* left/top move the top-left corner, translate moves the center onto the point */
+.hotspot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--dot-size);
+  height: var(--dot-size);
+  transform: translate(-50%, -50%);
+}
+
+.hotspot__dot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 3px solid var(--color-surface);
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent);
+  cursor: pointer;
+}
+
+.hotspot__dot:hover {
+  background: var(--color-brand);
+}
+
+/* Step 6: the panel is positioned against its .hotspot (absolute counts as positioned) */
+.hotspot__panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: var(--panel-width);
+  padding: var(--space);
+  background: var(--color-surface);
+  border-left: 4px solid var(--color-brand);
+  border-radius: var(--radius);
+  box-shadow: 0 0.5rem 1.5rem var(--color-shadow-strong);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s,
+    visibility 0.2s;
+}
+
+.hotspot__panel h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  color: var(--color-heading);
+}
+
+.hotspot__panel p {
+  margin: 0;
+}
+
+.hotspot:hover .hotspot__panel,
+.hotspot:focus-within .hotspot__panel {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Step 7: transform creates a stacking context, so lift the whole open hotspot */
+.hotspot:hover,
+.hotspot:focus-within {
+  z-index: 10;
+}
+
+/* Step 8: hotspots in the right half open their panel to the left */
+.hotspot--left .hotspot__panel {
+  left: auto;
+  right: 0;
+}
+
+/*
+ * Step 9: on small screens all panels share one fixed area below the image.
+ * The dot becomes the positioned element instead of .hotspot, so the nearest
+ * positioned ancestor of the panel is the figure, not the hotspot.
+ */
+@media (max-width: 768px) {
+  /* margin, not padding: top in % must stay relative to the image height */
+  .hotspot-image {
+    margin-bottom: calc(var(--panel-area) + var(--space));
+  }
+
+  .hotspot {
+    position: static;
+    width: auto;
+    height: 0;
+    transform: none;
+  }
+
+  .hotspot__dot {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--dot-size);
+    height: var(--dot-size);
+    transform: translate(-50%, -50%);
+  }
+
+  .hotspot-image .hotspot__panel {
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: var(--panel-area);
+    overflow: auto;
+    box-shadow: none;
+  }
+
+  /* Hover wins over focus, so exactly one panel is visible */
+  .hotspot-image:has(.hotspot:hover) .hotspot:not(:hover) .hotspot__panel {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Nothing selected yet: show the first panel, the area is never empty */
+  .hotspot-image:not(:has(.hotspot:hover, .hotspot:focus-within))
+    .hotspot:first-of-type
+    .hotspot__panel {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotspot__panel {
+    transition: none;
+  }
+}
+
+
+/* ==========================================================
+   Page: schedule
+   ========================================================== */
+
+#status {
+    padding: 10px 14px;
+    background-color: var(--color-surface-alt);
+    border-left: 5px solid var(--color-brand);
+    margin: 0 0 15px;
+}
+
+#empty {
+    padding: 10px 14px;
+    background-color: var(--color-hint);
+    border-left: 5px solid var(--color-accent);
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+}
+
+#timetable {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 820px;
+    table-layout: fixed;
+    font-size: 0.8rem;
+}
+
+#timetable th,
+#timetable td {
+    border: 1px solid var(--color-border);
+    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+    height: 56px;
+}
+
+#timetable thead th,
+#timetable tbody th {
+    background: var(--color-brand-dark);
+    color: var(--color-on-brand);
+    font-weight: 600;
+}
+
+#timetable tbody th {
+    width: 40px;
+}
+
+#timetable tbody tr:nth-of-type(odd) td.free {
+    background: var(--color-surface);
+}
+
+#timetable tbody tr:nth-of-type(even) td.free {
+    background: var(--color-zebra);
+}
+
+#timetable td b {
+    display: block;
+}
+
+#timetable td.lecture {
+    background: var(--color-lecture);
+}
+
+#timetable td.exercise {
+    background: var(--color-exercise);
+}
+
+#timetable td.pe {
+    background: var(--color-pe);
+}
+
+#timetable td.now {
+    outline: 4px solid var(--color-focus);
+    outline-offset: -4px;
+}
+
+#timetable td.dim {
+    background: repeating-linear-gradient(45deg, var(--color-surface), var(--color-surface) 6px, var(--color-surface-alt) 6px, var(--color-surface-alt) 12px);
+    color: transparent;
+}
+
+.legend {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.container .legend {
+    margin-left: 0;
+}
+
+.legend li {
+    padding: 3px 10px;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+}
+
+.legend .lecture {
+    background: var(--color-lecture);
+}
+
+.legend .exercise {
+    background: var(--color-exercise);
+}
+
+.legend .pe {
+    background: var(--color-pe);
+}
+
+.progress {
+    height: 18px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0;
+    background: var(--color-brand);
+    transition: width 0.6s;
+}
+
+@media (max-width: 700px) {
+    #timetable {
+        font-size: 0.7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #progress-fill {
+        transition: none;
+    }
+}
+
+
+/* ==========================================================
+   Page: map
+   ========================================================== */
+
+.map-page h3 {
+    margin: 0 0 8px;
+}
+
+.hint {
+    background: var(--color-hint);
+    border-left: 5px solid var(--color-accent);
+    padding: 10px 14px;
+    margin-bottom: 15px;
+}
+
+.hint ol {
+    margin: 6px 0 0 20px;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.map-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 20px;
+}
+
+/* isolation keeps Leaflet's own z-index values (zoom buttons, popups) inside the map,
+   so they never cover the fixed header and menu */
+#map {
+    isolation: isolate;
+    height: clamp(320px, 55vh, 520px);
+    width: 100%;
+    min-width: 0;
+    border-radius: var(--radius);
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.panel .legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    font-size: 0.85rem;
+}
+
+.container .legend {
+    margin-left: 0;
+}
+
+.dot {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 2px solid var(--color-surface);
+    box-shadow: 0 0 0 1px var(--color-muted);
+}
+
+.dot.school {
+    background: var(--color-brand);
+}
+
+.dot.home {
+    background: var(--color-accent);
+}
+
+.dot.user {
+    background: var(--color-success);
+}
+
+#list-empty {
+    margin: 0;
+    color: var(--color-muted);
+    font-style: italic;
+}
+
+.container .points {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 220px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.points li {
+    display: flex;
+    gap: 4px;
+}
+
+.points .select {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.points .remove {
+    padding: 0 10px;
+    color: var(--color-danger);
+}
+
+.points .remove:hover {
+    background: var(--color-danger-bg);
+}
+
+.target {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    margin: 0;
+    padding: 6px 12px 8px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.target label {
+    cursor: pointer;
+}
+
+#result {
+    margin: 0;
+    padding: 10px 12px;
+    background: var(--color-surface-alt);
+    border-left: 5px solid var(--color-brand);
+    border-radius: var(--radius);
+}
+
+.source {
+    font-size: 0.8rem;
+    margin: 12px 0 0;
+    color: var(--color-muted);
+}
+
+.popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 150px;
+}
+
+.popup-form input {
+    font: inherit;
+    padding: 5px;
+}
+
+.popup-form button {
+    padding: 5px;
+}
+
+@media (max-width: 768px) {
+    .map-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .container .points {
+        max-height: 180px;
+    }
+}
+
+.map-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 12px;
+}
+
+.map-actions p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+}
+
+/* Contacts in the footer never break in the middle */
+footer a {
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --dot-size: 1.5rem;
+    }
+}
